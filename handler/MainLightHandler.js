@@ -19,6 +19,9 @@ class MainLightHandler {
     this.bpmInterval = 2000;
     this.currentBPM = 60;
 
+    this.stepSequencer = [false, false, false, false];
+    this.tick = 0;
+
     /*setInterval(() => {
         this.dimmer = this.dimmer === 0 ? 255 : 0;
         this.universe.updateAll(this.dimmer);
@@ -29,16 +32,23 @@ class MainLightHandler {
   }
 
   flashLight () {
-    const tick = 0;
 
-    this.dimmer = 30;
+    //if (this.tick < this.stepSequencer.length) {
+    if (this.tick < 4) {
+      this.tick++;
+    } else {
+      this.tick = 0;
+    }
+
+
+    this.dimmer = this.stepSequencer[this.tick] ? 30 : 0;
     this.universe.updateAll(this.dimmer);
 
     setTimeout(() => {
       this.dimmer = 0;
       this.universe.updateAll(this.dimmer);
       clearInterval(this.flasher);
-    }, 100);
+    }, (this.bpmInterval / 2));
 
     /*this.flasher = setInterval(() => {
         this.dimmer -= 2;
@@ -48,6 +58,10 @@ class MainLightHandler {
             clearInterval(this.flasher);
         }
     }, 25);*/
+  }
+
+  setSteps (stepsArray) {
+    this.stepSequencer = stepsArray;
   }
 
   setBPM (bpm) {

@@ -14,6 +14,7 @@ router.post('/api', function(req, res, next) {
   console.log(req.body);
 
   dmxHandler.setBPM(req.body.currentBPM);
+  dmxHandler.setSteps(req.body.steps);
   dmxHandler.flashLight();
 
   res.send({status: 'ok'});
