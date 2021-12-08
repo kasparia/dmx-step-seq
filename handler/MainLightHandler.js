@@ -14,18 +14,16 @@ class MainLightHandler {
         this.universe.updateAll(0);
 
         this.dimmer = 0;
+        this.interval = 250;
 
         setInterval(() => {
             this.dimmer = this.dimmer === 0 ? 255 : 0;
             this.universe.updateAll(this.dimmer);
-        }, 250);
+        }, this.interval);
     }
 
-    flasher() {
-    }
-
-    startFlash() {
-        
+    setFlashInterval(time) {
+        this.interval = time;
     }
 
 

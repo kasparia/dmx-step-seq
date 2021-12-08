@@ -3,7 +3,6 @@ var router = express.Router();
 
 const MainLightHandler = require('../handler/MainLightHandler');
 const dmxHandler = new MainLightHandler();
-dmxHandler.startFlash();
 console.log(dmxHandler);
 
 /* GET home page. */
