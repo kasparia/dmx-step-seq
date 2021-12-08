@@ -13,8 +13,12 @@ router.get('/api', function(req, res, next) {
 router.post('/api', function(req, res, next) {
   console.log(req.body);
 
-  dmxHandler.setBPM(req.body.currentBPM);
-  dmxHandler.setSteps(req.body.steps);
+  if (typeof req.body.currentBPM !== 'undefined') {
+    dmxHandler.setBPM(req.body.currentBPM);
+  }
+  if (typeof req.body.steps !== 'undefined') {
+    dmxHandler.setSteps(req.body.steps);
+  }
   dmxHandler.flashLight();
 
   res.send({status: 'ok'});
