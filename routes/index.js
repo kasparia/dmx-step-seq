@@ -11,8 +11,11 @@ router.get('/api', function(req, res, next) {
 });
 
 router.post('/api', function(req, res, next) {
-  console.log(req.body.flashRate);
-  dmxHandler.setFlashInterval(req.body.flashRate);
+  console.log(req.body.currentBPM);
+
+  dmxHandler.setBPM(req.body.currentBPM);
+  dmxHandler.flashLight();
+
   res.send({status: 'ok'});
 });
 
