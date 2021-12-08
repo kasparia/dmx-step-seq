@@ -17,7 +17,7 @@ class MainLightHandler {
     this.interval = 250;
     this.flasher = null;
     this.bpmInterval = 2000;
-    this.currentBPM = 10;
+    this.currentBPM = 60;
 
     /*setInterval(() => {
         this.dimmer = this.dimmer === 0 ? 255 : 0;
@@ -34,20 +34,20 @@ class MainLightHandler {
     this.dimmer = 30;
     this.universe.updateAll(this.dimmer);
 
-    /*setTimeout(() => {
+    setTimeout(() => {
       this.dimmer = 0;
       this.universe.updateAll(this.dimmer);
       clearInterval(this.flasher);
-    }, 100);*/
+    }, 100);
 
-    this.flasher = setInterval(() => {
+    /*this.flasher = setInterval(() => {
         this.dimmer -= 2;
         this.universe.updateAll(this.dimmer);
 
         if (this.dimmer <= 0) {
             clearInterval(this.flasher);
         }
-    }, 25);
+    }, 25);*/
   }
 
   setBPM (bpm) {

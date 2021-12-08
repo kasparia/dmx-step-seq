@@ -11,7 +11,7 @@ router.get('/api', function(req, res, next) {
 });
 
 router.post('/api', function(req, res, next) {
-  console.log(req.body.currentBPM);
+  console.log(req.body);
 
   dmxHandler.setBPM(req.body.currentBPM);
   dmxHandler.flashLight();
