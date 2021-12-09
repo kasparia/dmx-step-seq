@@ -19,9 +19,16 @@ router.post('/api', function(req, res, next) {
   if (typeof req.body.steps !== 'undefined') {
     dmxHandler.setSteps(req.body.steps);
   }
-  dmxHandler.flashLight();
+
+  dmxHandler.countBPM();
 
   res.send({status: 'ok'});
+});
+
+router.post('/api/start', (req, res, next) => {
+  console.log('button');
+  dmxHandler.setRunningStatus(true);
+  dmxHandler.countBPM();
 });
 
 module.exports = router;

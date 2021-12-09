@@ -17,9 +17,12 @@ class MainLightHandler {
     this.interval = 250;
     this.flasher = null;
     this.bpmInterval = 2000;
-    this.currentBPM = 60;
+    this.currentBPM = 120;
 
-    this.stepSequencer = [false, false, false, false];
+    this.seqIsRunning = false;
+
+    this.stepSequencer = [false, false, false, false, false, false, false, false];
+    this.seqLength = 8; // 8 steps
     this.tick = 0;
 
     /*setInterval(() => {
@@ -27,37 +30,21 @@ class MainLightHandler {
         this.universe.updateAll(this.dimmer);
     }, this.interval);*/
     //this.startFlashing();
-
-    this.countBPM();
   }
 
   flashLight () {
-
-    //if (this.tick < this.stepSequencer.length) {
-    if (this.tick < 4) {
-      this.tick++;
-    } else {
-      this.tick = 0;
-    }
-
-
     this.dimmer = this.stepSequencer[this.tick] ? 30 : 0;
     this.universe.updateAll(this.dimmer);
 
-    setTimeout(() => {
+    this.tick = this.tick < this.stepSequencer.length - 1 ? this.tick + 1 : 0;
+
+    /*setTimeout(() => {
       this.dimmer = 0;
       this.universe.updateAll(this.dimmer);
       clearInterval(this.flasher);
-    }, (this.bpmInterval / 2));
+    }, (this.bpmInterval / 2));*/
 
-    /*this.flasher = setInterval(() => {
-        this.dimmer -= 2;
-        this.universe.updateAll(this.dimmer);
-
-        if (this.dimmer <= 0) {
-            clearInterval(this.flasher);
-        }
-    }, 25);*/
+    
   }
 
   setSteps (stepsArray) {
@@ -69,15 +56,29 @@ class MainLightHandler {
   }
 
   countBPMInterval () {
-      this.bpmInterval = 1000 - (this.currentBPM * 1000 / 60 / 4);
-    }
+    this.bpmInterval = (60000 / this.currentBPM) / 2;
+  }
+
+  setRunningStatus (status) {
+    this.seqIsRunning = status;
+  }
+
+  clearFlasher () {
+    clearInterval(this.sender);
+    this.sender = null;
+  }
   
   countBPM () {
-    this.countBPMInterval();
+    this.clearFlasher();
 
-    this.sender = setInterval(() => {
-      this.flashLight();
-    },this.bpmInterval);
+    this.countBPMInterval();
+    console.log(this.bpmInterval);
+
+    if (this.seqIsRunning) {
+      this.sender = setInterval(() => {
+        this.flashLight();
+      },this.bpmInterval);
+    }
   }
 
 };
