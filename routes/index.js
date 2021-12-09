@@ -26,7 +26,6 @@ router.post('/api', function(req, res, next) {
 });
 
 router.post('/api/start', (req, res, next) => {
-  console.log('button');
   dmxHandler.setRunningStatus(true);
   dmxHandler.countBPM();
 });

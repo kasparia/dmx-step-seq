@@ -38,11 +38,11 @@ class MainLightHandler {
 
     this.tick = this.tick < this.stepSequencer.length - 1 ? this.tick + 1 : 0;
 
-    /*setTimeout(() => {
+    setTimeout(() => {
       this.dimmer = 0;
       this.universe.updateAll(this.dimmer);
       clearInterval(this.flasher);
-    }, (this.bpmInterval / 2));*/
+    }, (this.bpmInterval / 4));
 
     
   }
@@ -56,7 +56,11 @@ class MainLightHandler {
   }
 
   countBPMInterval () {
-    this.bpmInterval = (60000 / this.currentBPM) / 2;
+    this.bpmInterval = (60000 / this.currentBPM) / 4;
+  }
+
+  getRunningStatus () {
+    return this.setRunningStatus;
   }
 
   setRunningStatus (status) {
