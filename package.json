@@ -1,20 +1,15 @@
 {
   "name": "dmx-step-seq",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
+  "main": "main.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "electron ."
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "dmx": "^0.2.5",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
+    "dmx": "^0.2.5"
   },
   "devDependencies": {
-    "socket.io": "^4.4.0"
+    "electron": "^16.0.4"
   }
 }
