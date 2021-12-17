@@ -4,10 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-const http = require('http');
-const server = http.createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(server);
+//const http = require('http');
+//const server = http.createServer(app);
+//const { Server } = require("socket.io");
+//const io = new Server(server);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
